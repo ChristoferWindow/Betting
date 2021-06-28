@@ -16,6 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamsListComponent } from './teams-list/teams-list.component';
 import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
+import { betsReducer } from './bets.reducer';
+import { BetItemComponent } from './bet-item/bet-item.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,13 @@ import { StoreModule } from '@ngrx/store';
     FooterComponent,
     TeamsListComponent,
     HomeComponent,
+    BetItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({ bets: betsReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

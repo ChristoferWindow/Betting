@@ -1,1 +1,12 @@
 <p>bets-list-big works!</p>
+<div class="todo-app">
+  <ul *ngIf="betList | async as betsList">
+    <li *ngFor="let betItem of betsList">
+      <app-bet-item [item]="betItem"
+                    (remove)="removeItem($event)"
+      >
+
+      </app-bet-item>
+    </li>
+  </ul>
+</div>
