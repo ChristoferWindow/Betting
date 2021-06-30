@@ -1,49 +1,45 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BetItem} from '../interfaces/bet-item';
 import {nanoid} from 'nanoid';
-import {FormControl, FormGroup} from '@angular/forms';
+import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
-
 @Component({
     selector: 'app-bet-create',
     templateUrl: './bet-create.component.html',
     styleUrls: ['./bet-create.component.scss']
 })
 export class BetCreateComponent implements OnInit {
-
     @Output() submitItem: EventEmitter<BetItem> = new EventEmitter<BetItem>();
-
-
-    team1 = new FormControl('');
-    team1Rate = new FormControl('');
-    team2 = new FormControl('');
-    team2Rate = new FormControl('');
-
-    ngOnInit(): void {
-        this.team1 = new FormControl('');
-        this.team1Rate = new FormControl('');
-        this.team2 = new FormControl('');
-        this.team2Rate = new FormControl('');
+    betCreateGroup: FormGroup = this.fb.group({
+        team1: ['', Validators.required],
+        team1Rate: ['', Validators.required],
+        team2: ['', Validators.required],
+        team2Rate: ['', Validators.required],
+    });
+    constructor(private fb: FormBuilder) {
     }
-
-    submitValue(newBetForm: any): void {
-        // if (newBetForm.valid) {
-        alert(newBetForm.team1);
-        const betItem: BetItem = {
-            _id: nanoid(),
-            teams: {
-                team1: {
-                    teamId: newBetForm.team1,
-                    rate: newBetForm.team1Rate
-                }, team2: {
-                    teamId: newBetForm.team2,
-                    rate: newBetForm.team2Rate
+    ngOnInit(): void {
+    }
+    submitValue(): void {
+        if (this.betCreateGroup.valid) {
+            // console.log('nnnn', newBetForm);
+            const betItem: BetItem = {
+                _id: nanoid(),
+                teams: {
+                    team1: {
+                        teamId: this.betCreateGroup.get('team1')?.value,
+                        rate: this.betCreateGroup.get('team1Rate')?.value
+                    }, team2: {
+                        teamId: this.betCreateGroup.get('team2')?.value,
+                        rate: this.betCreateGroup.get('team2Rate')?.value
+                    }
                 }
-            }
-        };
-        this.submitItem.emit(betItem);
-        newBetForm.resetForm();
-        // }
+            };
+            alert(betItem.teams.team1.teamId);
+            console.log(betItem, 'betItem');
+            this.submitItem.emit(betItem);
+            this.betCreateGroup.reset();
+        }
     }
 }
