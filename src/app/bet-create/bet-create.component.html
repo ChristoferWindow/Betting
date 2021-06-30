@@ -1,1 +1,51 @@
-<p>bet-create works!</p>
+<h2>Create new Bet</h2>
+
+<form id="createBetForm" #form="ngForm" (submit)="submitValue(form)">
+  <div class="form-group">
+    Team 1
+    <label>
+      Select Team
+      <input class="todo-input form-control"
+             id="team1"
+             type="text"
+             required
+             [formControl]="team1" name="team1"
+      >
+    </label>
+    <label>
+      Select bet
+      <input class=""
+             id="team1Rate"
+             type="text"
+             required
+             [formControl]="team1Rate" name="team1Rate"
+      >
+    </label>
+
+  </div>
+  <div class="form-group">
+    Team 2
+    <label>
+      Select Team
+      <input class="todo-input form-control"
+             id="team2"
+             type="text"
+             required
+             [formControl]="team2" name="team2"
+      >
+    </label>
+    <label>
+      Select bet
+      <input class=""
+             id="team2Rate"
+             type="text"
+             required
+             [formControl]="team2Rate" name="team2Rate"
+      >
+    </label>
+
+  </div>
+  <button type="submit" form="createBetForm">
+    Save
+  </button>
+</form>

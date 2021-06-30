@@ -3,6 +3,8 @@ import {BetItem} from '../interfaces/bet-item';
 import {createBet, removeBet} from '../bets.actions';
 import {Observable} from 'rxjs';
 import {State, Store} from '@ngrx/store';
+import {BetsService} from '../services/bets-service';
+import {nanoid} from 'nanoid';
 
 @Component({
     selector: 'app-bets-list-big',
@@ -10,18 +12,14 @@ import {State, Store} from '@ngrx/store';
     styleUrls: ['./bets-list-big.component.scss']
 })
 
-@Component({
-    selector: 'app-bet-item',
-    templateUrl: './bet-item.component.html',
-    styleUrls: ['./bet-item.component.scss']
-})
-export class BetListBigComponent implements OnInit {
+
+export class BetsListBigComponent implements OnInit {
 
     betList: Observable<BetItem[]>;
 
-    constructor(private store: Store<State<any>>) {
+    constructor(private store: Store<State<any>>, private betsService: BetsService) {
         const item: BetItem = {
-            _id: uuid(),
+            _id: nanoid(),
             teams: {
                 team1: {
                     teamId: '1',
@@ -33,7 +31,7 @@ export class BetListBigComponent implements OnInit {
             }
         };
 
-        this.betList = this.store.dispatch(createBet({item}));
+        this.betList = this.betsService.getBetsList();
     }
 
     ngOnInit(): void {
@@ -43,12 +41,10 @@ export class BetListBigComponent implements OnInit {
         this.store.dispatch(createBet({
             item: bet
         }));
-        // this.todoListService.addItem({title});
     }
 
-    removeItem(item): void {
+    removeItem(item: any): void {
         this.store.dispatch(removeBet({id: item._id}));
-        // this.todoListService.deleteItem(item);
     }
 
     // updateItem(item, changes): void {

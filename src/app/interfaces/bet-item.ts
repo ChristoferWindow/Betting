@@ -1,5 +1,5 @@
 export interface BetItem {
-    _id?: string;
+    _id: string;
     teams: {
         team1: {
             teamId: string,

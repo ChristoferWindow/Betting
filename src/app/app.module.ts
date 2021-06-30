@@ -18,6 +18,9 @@ import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
 import { betsReducer } from './bets.reducer';
 import { BetItemComponent } from './bet-item/bet-item.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,10 +39,13 @@ import { BetItemComponent } from './bet-item/bet-item.component';
     BetItemComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgbModule,
-    StoreModule.forRoot({ bets: betsReducer})
+    StoreModule.forRoot({ bets: betsReducer}),
   ],
   providers: [],
   bootstrap: [AppComponent]
