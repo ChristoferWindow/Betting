@@ -40,7 +40,7 @@ export class BetCreateComponent implements OnInit {
             };
             // alert(betItem.teams.team1.teamId);
             console.log(betItem, 'betItem');
-            this.betsService.addItem(betItem);
+            // this.betsService.addItem(betItem);
             this.betCreateGroup.reset();
         }
     }

@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BetItem} from '../interfaces/bet-item';
-import {Observable} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {BetsService} from '../services/bets-service';
+import {Store} from '@ngrx/store';
+import {BetsState} from '../store/bets/bets.reducer';
+import * as fromBets from '../store/bets/bets.selector';
 
 @Component({
     selector: 'app-bets-list-big',
@@ -9,21 +12,23 @@ import {BetsService} from '../services/bets-service';
     styleUrls: ['./bets-list-big.component.scss']
 })
 
+export class BetsListBigComponent implements OnInit, OnDestroy {
 
-export class BetsListBigComponent implements OnInit {
+    public betsList: BetItem[] | undefined;
 
-    betList: Observable<BetItem[]>;
+    public betsSubscription$: Subscription | undefined;
 
-    constructor(private betsService: BetsService) {
-        this.betList = betsService.getBetsList();
-        console.log(this.betList);
+    constructor(private betsService: BetsService, private store: Store<BetsState>) {
     }
 
     ngOnInit(): void {
+        this.betsSubscription$ = this.store.select(fromBets.getBets).subscribe((bets) => {
+            this.betsList = bets;
+        });
     }
 
-    removeItem(item: any): void {
-        this.betsService.removeItem(item);
+    ngOnDestroy(): void {
+        this.betsSubscription$?.unsubscribe();
     }
 }
 

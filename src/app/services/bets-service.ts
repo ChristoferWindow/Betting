@@ -2,7 +2,6 @@ import {Store} from '@ngrx/store';
 import {Observable, Subject} from 'rxjs';
 import {BetItem} from '../interfaces/bet-item';
 import {Injectable} from '@angular/core';
-import {createBet, removeBet} from '../store/bets/bets.actions';
 import {BetsState} from '../store/bets/bets.reducer';
 
 @Injectable({
@@ -25,13 +24,4 @@ export class BetsService {
     getBetsList(): Observable<BetItem[]> {
         return this.betListSubject.asObservable();
     }
-
-    addItem(newBet: BetItem): void {
-        this.store.dispatch(createBet({item: newBet}));
-    }
-
-    removeItem(item: any): void {
-        this.store.dispatch(removeBet({id: item._id}));
-    }
-
 }

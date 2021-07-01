@@ -12,14 +12,14 @@ export class BetItemComponent implements OnInit {
 
     constructor() {
         this.item = {
-            _id: '',
+            _id: 'asdfasdf',
             teams: {
                 team1: {
-                    teamId: '',
+                    teamId: 'asss',
                     rate: 0,
                 },
                 team2: {
-                    teamId: '',
+                    teamId: 'sdf',
                     rate: 0,
                 },
             }
@@ -29,7 +29,7 @@ export class BetItemComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    removeItem(): void {
-        this.remove.emit(this.item);
-    }
+    // removeItem(): void {
+    //     this.remove.emit(this.item);
+    // }
 }

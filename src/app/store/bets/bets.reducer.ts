@@ -1,6 +1,6 @@
-import {Action, createReducer, createSelector, on} from '@ngrx/store';
-import {createBet, removeBet} from './bets.actions';
+import {Action, ActionReducerMap, createReducer, createSelector, on, State} from '@ngrx/store';
 import {BetItem} from '../../interfaces/bet-item';
+import {BetsActions, BetsActionTypes} from './bets.actions';
 
 export interface BetsState {
     bets: BetItem[];
@@ -9,35 +9,44 @@ export interface BetsState {
 export const initialState: BetsState = {
     bets:
         [
-        {
-            _id: 'asdf12',
-            teams: {
-                team1: {
-                    teamId: 'sadfa',
-                    rate: 1,
-                },
-                team2: {
-                    teamId: 'asdfs',
-                    rate: 1,
+            {
+                _id: 'asdf12',
+                teams: {
+                    team1: {
+                        teamId: 'sadfa',
+                        rate: 1,
+                    },
+                    team2: {
+                        teamId: 'asdfs',
+                        rate: 1,
+                    }
                 }
             }
-        }
-    ]
+        ]
 };
 
-export const selectAllBets = (state: BetsState) => state.bets;
-export const selectBets = createSelector(
-    selectAllBets,
-    (allBets: BetItem[]) => {
-        return allBets;
-    }
-);
+// export const selectAllBets = (state: BetsState) => state.bets;
+// export const selectBets = createSelector(
+//     selectAllBets,
+//     (allBets: BetItem[]) => {
+//         return allBets;
+//     }
+// );
 
-const reducer = createReducer(
-    initialState,
-    on(createBet, (state, {item}) => ({...state, bets: addItemToList(state.bets, item)})),
-    on(removeBet, (state, {id}) => ({...state, bets: removeItemFromList(state.bets, id)})),
-);
+// const reducer = createReducer(
+//     initialState,
+//     on(createBet, (state, {item}) => ({...state, bets: addItemToList(state.bets, item)})),
+//     on(removeBet, (state, {id}) => ({...state, bets: removeItemFromList(state.bets, id)})),
+// );
+
+export function BetsReducer(state = initialState, action: BetsActions): BetsState {
+    switch (action.type) {
+        case BetsActionTypes.ADD_BET:
+            return addItemToList(state, action.bet);
+        default:
+            return state;
+    }
+}
 
 
 function removeItemFromList(list: BetItem[], id: string): BetItem[] {
@@ -46,13 +55,13 @@ function removeItemFromList(list: BetItem[], id: string): BetItem[] {
     });
 }
 
-function addItemToList(items: BetItem[], item: BetItem): BetItem[] {
-    console.log('added');
-    items.concat(item);
+function addItemToList(state: BetsState, item: BetItem): BetsState {
+    state.bets.concat(item);
 
-    return items;
+    return state;
 }
 
-export function betsReducer(state: BetsState | undefined, action: Action): BetsState {
-    return reducer(state, action);
-}
+//
+// export function betsReducer(state = initialState, action: Action): BetsState {
+//     return reducer(state, action);
+// }

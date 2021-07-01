@@ -20,8 +20,7 @@ import { BetItemComponent } from './bet-item/bet-item.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {betsReducer} from './store/bets/bets.reducer';
-import {environment} from '../environments/environment';
+import {betsReducer} from './store/bets/bets.selector';
 
 @NgModule({
   declarations: [
@@ -46,12 +45,7 @@ import {environment} from '../environments/environment';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    StoreModule.forRoot({ betsRedu: betsReducer}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    }),
+    StoreModule.forRoot({ bets: betsReducer}),
   ],
   providers: [],
   bootstrap: [AppComponent]
