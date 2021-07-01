@@ -16,11 +16,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamsListComponent } from './teams-list/teams-list.component';
 import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
-import { betsReducer } from './bets.reducer';
 import { BetItemComponent } from './bet-item/bet-item.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {betsReducer} from './store/bets/bets.reducer';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,12 @@ import {CommonModule} from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    StoreModule.forRoot({ bets: betsReducer}),
+    StoreModule.forRoot({ betsRedu: betsReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

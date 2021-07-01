@@ -1,5 +1,5 @@
 import {Action, createAction, props} from '@ngrx/store';
-import {BetItem} from './interfaces/bet-item';
+import {BetItem} from '../../interfaces/bet-item';
 
 export enum BetsActionTypes {
     GET_BET = '[GET BET]',

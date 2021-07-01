@@ -1,29 +1,31 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BetItem} from '../interfaces/bet-item';
 import {nanoid} from 'nanoid';
-import {Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormsModule} from '@angular/forms';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BetsService} from '../services/bets-service';
+
 @Component({
     selector: 'app-bet-create',
     templateUrl: './bet-create.component.html',
     styleUrls: ['./bet-create.component.scss']
 })
 export class BetCreateComponent implements OnInit {
-    @Output() submitItem: EventEmitter<BetItem> = new EventEmitter<BetItem>();
+
     betCreateGroup: FormGroup = this.fb.group({
         team1: ['', Validators.required],
         team1Rate: ['', Validators.required],
         team2: ['', Validators.required],
         team2Rate: ['', Validators.required],
     });
-    constructor(private fb: FormBuilder) {
+
+    constructor(private fb: FormBuilder, private betsService: BetsService) {
     }
+
     ngOnInit(): void {
     }
+
     submitValue(): void {
         if (this.betCreateGroup.valid) {
-            // console.log('nnnn', newBetForm);
             const betItem: BetItem = {
                 _id: nanoid(),
                 teams: {
@@ -36,10 +38,11 @@ export class BetCreateComponent implements OnInit {
                     }
                 }
             };
-            alert(betItem.teams.team1.teamId);
+            // alert(betItem.teams.team1.teamId);
             console.log(betItem, 'betItem');
-            this.submitItem.emit(betItem);
+            this.betsService.addItem(betItem);
             this.betCreateGroup.reset();
         }
     }
+
 }
