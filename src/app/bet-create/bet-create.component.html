@@ -36,7 +36,17 @@
       >
     </label>
   </div>
-  <button class="btn btn-primary"type="submit" form="createBetForm">
+  <label class="text-center">
+    Draw
+    <input class=""
+           id="draw"
+           type="text"
+           required
+           [formControlName]="'draw'" name="draw"
+    >
+  </label>
+  <br/>
+  <button class="btn btn-primary text-center" type="submit" form="createBetForm">
     Save
   </button>
 </form>
