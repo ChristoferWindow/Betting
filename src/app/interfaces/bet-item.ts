@@ -10,4 +10,5 @@ export interface BetItem {
             rate: number,
         },
     };
+    draw: number;
 }

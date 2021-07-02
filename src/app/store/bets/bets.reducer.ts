@@ -18,7 +18,8 @@ export const initialState: BetsState = {bets: [
                     teamId: '1112',
                     rate: 1
                 }
-            }
+            },
+            draw: 2
         },
         {
             _id: nanoid(),
@@ -31,7 +32,8 @@ export const initialState: BetsState = {bets: [
                     teamId: '1114',
                     rate: 3
                 }
-            }
+            },
+            draw: 5
         },
         {
             _id: nanoid(),
@@ -44,7 +46,8 @@ export const initialState: BetsState = {bets: [
                     teamId: '1113',
                     rate: 5
                 }
-            }
+            },
+            draw: 10
         }
     ]};
 

@@ -1,17 +1,24 @@
-<div *ngIf="betsWithTeamDetails &&  betsWithTeamDetails.bet.teams" class="d-flex justify-content-center bet-item shadow p-3 mb-5 bg-white rounded">
+<div *ngIf="betsWithTeamDetails &&  betsWithTeamDetails.bet.teams"
+     class="d-flex justify-content-center bet-item shadow p-3 mb-5 bg-white rounded">
   <div id="team1">
     <div> TEAM: {{betsWithTeamDetails.team1Details.name}}</div>
     <img
       src="{{betsWithTeamDetails.team1Details.logo}}"
       class="teamLogo">
-    <div class="text-center rate" > Rate: {{betsWithTeamDetails.bet.teams.team1.rate}}</div>
+    <div class="text-center rate"> Rate: {{betsWithTeamDetails.bet.teams.team1.rate}}</div>
   </div>
-  <div id="versus"> VS </div>
+  <div class="bet-center">
+    <div class="versus"> VS</div>
+    <div class="draw"> Draw: {{betsWithTeamDetails.bet.draw}}</div>
+  </div>
+
   <div id="team2">
     <div>TEAM: {{betsWithTeamDetails.team2Details.name}}</div>
     <img
-    src="{{betsWithTeamDetails.team2Details.logo}}"
-    class="teamLogo">
-    <div class="text-center rate" > Rate: {{betsWithTeamDetails.bet.teams.team2.rate}}</div>
+      src="{{betsWithTeamDetails.team2Details.logo}}"
+      class="teamLogo">
+    <div class="text-center rate"> Rate: {{betsWithTeamDetails.bet.teams.team2.rate}}</div>
   </div>
+
+
 </div>

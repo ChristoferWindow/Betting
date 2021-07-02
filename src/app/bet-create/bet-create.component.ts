@@ -24,6 +24,7 @@ export class BetCreateComponent implements OnInit, OnDestroy {
         team1Rate: ['', Validators.required],
         team2: ['', Validators.required],
         team2Rate: ['', Validators.required],
+        draw: ['', Validators.required],
     });
 
     public teamsList: TeamItem[] | undefined;
@@ -53,7 +54,8 @@ export class BetCreateComponent implements OnInit, OnDestroy {
                         teamId: this.betCreateGroup.get('team2')?.value,
                         rate: this.betCreateGroup.get('team2Rate')?.value
                     }
-                }
+                },
+                draw: this.betCreateGroup.get('draw')?.value
             };
             // alert(betItem.teams.team1.teamId);
             console.log(betItem, 'betItem');
