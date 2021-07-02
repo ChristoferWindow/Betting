@@ -1,1 +1,6 @@
-<p>teams-list works!</p>
+<h1 class="text-center">Drużyny</h1>
+<div class="d-flex justify-content-center flex-row container">
+  <app-team-item *ngFor="let teamItem of teamsList"
+                 [item]="teamItem">
+  </app-team-item>
+</div>

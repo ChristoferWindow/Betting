@@ -1,1 +1,26 @@
-<p>team-create works!</p>
+<h2 class="text-center">Create new Team</h2>
+<form class="text-center" id="createBetForm" #form="ngForm" [formGroup]="teamCreateGroup" (submit)="submitValue()">
+  <div class="form-group">
+    <label>
+      Name:
+      <input class="form-control"
+             id="teamName"
+             type="text"
+             required
+             [formControlName]="'teamName'" name="teamName"
+      >
+    </label>
+    <label>
+      Logo url:
+      <input class="form-control"
+             id="teamLogo"
+             type="text"
+             required
+             [formControlName]="'teamLogo'" name="teamLogo"
+      >
+    </label>
+  </div>
+  <button class="btn btn-primary" type="submit" form="createBetForm">
+    Save
+  </button>
+</form>

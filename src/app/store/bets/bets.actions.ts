@@ -32,6 +32,7 @@ export class AddBetAction implements Action {
     public readonly type = BetsActionTypes.ADD_BET;
 
     constructor(public bet: BetItem) {
+        console.log('sdf');
     }
 }
 export class RemoveBetAction implements Action {
@@ -45,4 +46,11 @@ export class GetBets implements Action {
     readonly type = BetsActionTypes.GET_BET;
 }
 
-export type BetsActions = AddBetAction | RemoveBetAction | GetBets;
+export class UpdateBet implements Action {
+    readonly type = BetsActionTypes.UPDATE_BET;
+
+    constructor(public  bet: BetItem) {
+    }
+}
+
+export type BetsActions = AddBetAction | RemoveBetAction | GetBets | UpdateBet;

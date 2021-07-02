@@ -1,11 +1,24 @@
-<div>
-  <div>
-    <span>Team1: {{item.teams.team1.teamId}}</span>
-    <span>Rate: {{item.teams.team1.teamId}}</span>
+<div *ngIf="item" class="d-flex justify-content-center">
+  <div id="team1">
+    <img
+      src="https://3.bp.blogspot.com/-bdFeJuVSTsU/WG9jbUuED9I/AAAAAAAAKnk/3YhwBYm0qaUrqFeoIlfnrl8adtjNTbpugCLcB/s1600/images.png"
+      class="teamLogo">
+    <div class="text-center rate"> Rate: 10</div>
   </div>
-  <div>
-    <span>Team2: {{item.teams.team2.teamId}}</span>
-    <span>Rate: {{item.teams.team2.rate}}</span>
+  <div id="versus"> VS </div>
+  <div id="team2">
+    <img
+    src="https://3.bp.blogspot.com/-bdFeJuVSTsU/WG9jbUuED9I/AAAAAAAAKnk/3YhwBYm0qaUrqFeoIlfnrl8adtjNTbpugCLcB/s1600/images.png"
+    class="teamLogo">
+    <div class="text-center rate"> Rate: 10</div>
   </div>
+  <!--  <div>-->
+  <!--    <span>Team1: {{item.teams.team1.teamId}}</span>-->
+  <!--    <span>Rate: {{item.teams.team1.rate}}</span>-->
 
+  <!--  </div>-->
+  <!--  <div>-->
+  <!--    <span>Team2: {{item.teams.team2.teamId}}</span>-->
+  <!--    <span>Rate: {{item.teams.team2.rate}}</span>-->
+  <!--  </div>-->
 </div>

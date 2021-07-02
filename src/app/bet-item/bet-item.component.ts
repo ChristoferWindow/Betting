@@ -7,29 +7,12 @@ import {BetItem} from '../interfaces/bet-item';
     styleUrls: ['./bet-item.component.scss']
 })
 export class BetItemComponent implements OnInit {
-    @Input() item: BetItem;
+    @Input() item: BetItem | undefined;
     @Output() remove: EventEmitter<BetItem> = new EventEmitter();
 
     constructor() {
-        this.item = {
-            _id: 'asdfasdf',
-            teams: {
-                team1: {
-                    teamId: 'asss',
-                    rate: 0,
-                },
-                team2: {
-                    teamId: 'sdf',
-                    rate: 0,
-                },
-            }
-        };
     }
 
     ngOnInit(): void {
     }
-
-    // removeItem(): void {
-    //     this.remove.emit(this.item);
-    // }
 }

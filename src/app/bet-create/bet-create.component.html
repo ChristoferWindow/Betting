@@ -1,5 +1,5 @@
-<h2>Create new Bet</h2>
-<form id="createBetForm" #form="ngForm" [formGroup]="betCreateGroup" (submit)="submitValue()">
+<h2 class="text-center">Create new Bet</h2>
+<form class="text-center" id="createBetForm" #form="ngForm" [formGroup]="betCreateGroup" (submit)="submitValue()">
   <div class="form-group">
     Team 1
     <label>
@@ -42,7 +42,7 @@
       >
     </label>
   </div>
-  <button type="submit" form="createBetForm">
+  <button class="btn btn-primary"type="submit" form="createBetForm">
     Save
   </button>
 </form>

@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {BetItem} from '../interfaces/bet-item';
 import {nanoid} from 'nanoid';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BetsService} from '../services/bets-service';
+import {BetsState} from '../store/bets/bets.reducer';
+import {Store} from '@ngrx/store';
+import {AddBetAction} from '../store/bets/bets.actions';
 
 @Component({
     selector: 'app-bet-create',
@@ -12,13 +14,13 @@ import {BetsService} from '../services/bets-service';
 export class BetCreateComponent implements OnInit {
 
     betCreateGroup: FormGroup = this.fb.group({
-        team1: ['', Validators.required],
-        team1Rate: ['', Validators.required],
+        name: ['', Validators.required],
+        logo: ['', Validators.required],
         team2: ['', Validators.required],
         team2Rate: ['', Validators.required],
     });
 
-    constructor(private fb: FormBuilder, private betsService: BetsService) {
+    constructor(private fb: FormBuilder, private store: Store<BetsState>) {
     }
 
     ngOnInit(): void {
@@ -40,9 +42,8 @@ export class BetCreateComponent implements OnInit {
             };
             // alert(betItem.teams.team1.teamId);
             console.log(betItem, 'betItem');
-            // this.betsService.addItem(betItem);
+            this.store.dispatch(new AddBetAction(betItem));
             this.betCreateGroup.reset();
         }
     }
-
 }

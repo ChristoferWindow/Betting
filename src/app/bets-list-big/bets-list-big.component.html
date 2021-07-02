@@ -1,8 +1,4 @@
-<p>bets-list-big works!</p>
-<div class="todo-app">
-  <ul *ngIf="betsList">
-    <li *ngFor="let betItem of betsList">
-      <app-bet-item [item]="betItem"></app-bet-item>
-    </li>
-  </ul>
+<h1 class="text-center">Zakłady</h1>
+<div *ngFor="let betItem of betsList">
+  <app-bet-item [item]="betItem"></app-bet-item>
 </div>
