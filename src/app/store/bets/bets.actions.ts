@@ -1,5 +1,5 @@
 import {Action, createAction, props} from '@ngrx/store';
-import {BetItem} from './interfaces/bet-item';
+import {BetItem} from '../../interfaces/bet-item';
 
 export enum BetsActionTypes {
     GET_BET = '[GET BET]',
@@ -19,17 +19,30 @@ export enum BetsActionTypes {
     DELETE_BET_FAILURE = '[DELETE_BET] FAILURE',
 }
 
+// export const createBet = createAction(
+//     '[Bets Component] Create',
+//     props<{item: BetItem}>(),
+// );
+// export const removeBet = createAction(
+//     '[Bets Component] Delete',
+//     props<{id: string}>(),
+// );
+
+export class AddBetAction implements Action {
+    public readonly type = BetsActionTypes.ADD_BET;
+
+    constructor(public bet: BetItem) {
+    }
+}
+export class RemoveBetAction implements Action {
+    public readonly type = BetsActionTypes.DELETE_BET;
+
+    constructor(public betId: string) {
+    }
+}
+
 export class GetBets implements Action {
     readonly type = BetsActionTypes.GET_BET;
 }
 
-export const createBet = createAction(
-    '[Bets Component] Create',
-    props<{item: BetItem}>(),
-);
-export const removeBet = createAction(
-    '[Bets Component] Delete',
-    props<{id: string}>(),
-);
-export const updateBet = createAction('[Bets Component] Update');
-export const resetBet = createAction('[Bets Component] Reset');
+export type BetsActions = AddBetAction | RemoveBetAction | GetBets;

@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BetItem} from '../interfaces/bet-item';
-import {createBet, removeBet} from '../bets.actions';
-import {Observable} from 'rxjs';
-import {State, Store} from '@ngrx/store';
+import {Subscription} from 'rxjs';
 import {BetsService} from '../services/bets-service';
-import {nanoid} from 'nanoid';
+import {Store} from '@ngrx/store';
+import {BetsState} from '../store/bets/bets.reducer';
+import * as fromBets from '../store/bets/bets.selector';
 
 @Component({
     selector: 'app-bets-list-big',
@@ -12,44 +12,23 @@ import {nanoid} from 'nanoid';
     styleUrls: ['./bets-list-big.component.scss']
 })
 
+export class BetsListBigComponent implements OnInit, OnDestroy {
 
-export class BetsListBigComponent implements OnInit {
+    public betsList: BetItem[] | undefined;
 
-    betList: Observable<BetItem[]>;
+    public betsSubscription$: Subscription | undefined;
 
-    constructor(private store: Store<State<any>>, private betsService: BetsService) {
-        const item: BetItem = {
-            _id: nanoid(),
-            teams: {
-                team1: {
-                    teamId: '1',
-                    rate: 1
-                }, team2: {
-                    teamId: '2',
-                    rate: 2
-                }
-            }
-        };
-
-        this.betList = this.betsService.getBetsList();
+    constructor(private betsService: BetsService, private store: Store<BetsState>) {
     }
 
     ngOnInit(): void {
+        this.betsSubscription$ = this.store.select(fromBets.getBets).subscribe((bets) => {
+            this.betsList = bets;
+        });
     }
 
-    addItem(bet: BetItem): void {
-        this.store.dispatch(createBet({
-            item: bet
-        }));
+    ngOnDestroy(): void {
+        this.betsSubscription$?.unsubscribe();
     }
-
-    removeItem(item: any): void {
-        this.store.dispatch(removeBet({id: item._id}));
-    }
-
-    // updateItem(item, changes): void {
-    //     this.store.dispatch(changeCompletedStatus({id: item._id, completed: changes}));
-    //     // this.todoListService.updateItem(item, changes);
-    // }
 }
 

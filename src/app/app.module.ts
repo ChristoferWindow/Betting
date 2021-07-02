@@ -16,11 +16,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamsListComponent } from './teams-list/teams-list.component';
 import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
-import { betsReducer } from './bets.reducer';
 import { BetItemComponent } from './bet-item/bet-item.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {betsReducer} from './store/bets/bets.selector';
 
 @NgModule({
   declarations: [
