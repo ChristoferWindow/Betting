@@ -1,67 +1,92 @@
-import {Action, ActionReducerMap, createReducer, createSelector, on, State} from '@ngrx/store';
 import {BetItem} from '../../interfaces/bet-item';
 import {BetsActions, BetsActionTypes} from './bets.actions';
+import {nanoid} from 'nanoid';
 
 export interface BetsState {
     bets: BetItem[];
 }
 
-export const initialState: BetsState = {
-    bets:
-        [
-            {
-                _id: 'asdf12',
-                teams: {
-                    team1: {
-                        teamId: 'sadfa',
-                        rate: 1,
-                    },
-                    team2: {
-                        teamId: 'asdfs',
-                        rate: 1,
-                    }
+export const initialState: BetsState = {bets: [
+        {
+            _id: nanoid(),
+            teams: {
+                team1: {
+                    teamId: '1111',
+                    rate: 2
+                },
+                team2: {
+                    teamId: '1112',
+                    rate: 1
                 }
             }
-        ]
-};
-
-// export const selectAllBets = (state: BetsState) => state.bets;
-// export const selectBets = createSelector(
-//     selectAllBets,
-//     (allBets: BetItem[]) => {
-//         return allBets;
-//     }
-// );
-
-// const reducer = createReducer(
-//     initialState,
-//     on(createBet, (state, {item}) => ({...state, bets: addItemToList(state.bets, item)})),
-//     on(removeBet, (state, {id}) => ({...state, bets: removeItemFromList(state.bets, id)})),
-// );
+        },
+        {
+            _id: nanoid(),
+            teams: {
+                team1: {
+                    teamId: '1112',
+                    rate: 5
+                },
+                team2: {
+                    teamId: '1114',
+                    rate: 3
+                }
+            }
+        },
+        {
+            _id: nanoid(),
+            teams: {
+                team1: {
+                    teamId: '1111',
+                    rate: 2
+                },
+                team2: {
+                    teamId: '1113',
+                    rate: 5
+                }
+            }
+        }
+    ]};
 
 export function BetsReducer(state = initialState, action: BetsActions): BetsState {
     switch (action.type) {
         case BetsActionTypes.ADD_BET:
             return addItemToList(state, action.bet);
+        case BetsActionTypes.DELETE_BET:
+            return removeItemFromList(state, action.betId);
+        case BetsActionTypes.UPDATE_BET:
+            return updateItem(state, action.bet);
         default:
             return state;
     }
 }
 
+function removeItemFromList(state: BetsState, id: string): BetsState {
+    const list: BetItem[] = state.bets;
 
-function removeItemFromList(list: BetItem[], id: string): BetItem[] {
-    return list.filter((element) => {
+    list.filter((element) => {
         return element._id !== id;
     });
+
+    return {...state, bets: list};
 }
 
 function addItemToList(state: BetsState, item: BetItem): BetsState {
-    state.bets.concat(item);
-
-    return state;
+    return {...state, bets: state.bets.concat(item)};
 }
 
-//
-// export function betsReducer(state = initialState, action: Action): BetsState {
-//     return reducer(state, action);
-// }
+function updateItem(state: BetsState, betItem: BetItem): BetsState {
+    const list: BetItem[] = state.bets;
+
+    list.map(value => {
+        if (value._id === betItem._id) {
+            return {
+                betItem
+            };
+        } else {
+            return value;
+        }
+    });
+
+    return {...state, bets: list};
+}

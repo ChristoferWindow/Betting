@@ -1,15 +1,12 @@
-<h2>Create new Bet</h2>
-<form id="createBetForm" #form="ngForm" [formGroup]="betCreateGroup" (submit)="submitValue()">
+<h2 class="text-center">Create new Bet</h2>
+<form class="text-center" id="createBetForm" #form="ngForm" [formGroup]="betCreateGroup" (submit)="submitValue()">
   <div class="form-group">
-    Team 1
     <label>
-      Select Team
-      <input class="todo-input form-control"
-             id="team1"
-             type="text"
-             required
-             [formControlName]="'team1'" name="team1"
-      >
+      Select first team
+      <select class="custom-select" [formControlName]="'team1'">
+        <option value="" disabled selected>Choose your team</option>
+        <option *ngFor="let teamItem of teamsList" value="{{teamItem._id}}">{{teamItem.name}}</option>
+      </select>
     </label>
     <label>
       Select bet
@@ -22,15 +19,12 @@
     </label>
   </div>
   <div class="form-group">
-    Team 2
     <label>
-      Select Team
-      <input class="todo-input form-control"
-             id="team2"
-             type="text"
-             required
-             [formControlName]="'team2'" name="team2"
-      >
+      Select second team
+      <select class="custom-select" [formControlName]="'team2'">
+        <option value="" disabled selected>Choose your team</option>
+        <option *ngFor="let teamItem of teamsList" value="{{teamItem._id}}">{{teamItem.name}}</option>
+      </select>
     </label>
     <label>
       Select bet
@@ -42,7 +36,7 @@
       >
     </label>
   </div>
-  <button type="submit" form="createBetForm">
+  <button class="btn btn-primary"type="submit" form="createBetForm">
     Save
   </button>
 </form>

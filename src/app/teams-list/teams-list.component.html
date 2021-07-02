@@ -1,1 +1,6 @@
-<p>teams-list works!</p>
+<h1 class="text-center">Drużyny</h1>
+<div class="d-flex justify-content-center flex-row container">
+  <a *ngFor="let teamItem of teamsList"  [routerLink]="['/team', teamItem._id]">
+    <app-team-item [item]="teamItem"></app-team-item>
+  </a>
+</div>
