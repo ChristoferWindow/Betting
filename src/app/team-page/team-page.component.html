@@ -1,10 +1,10 @@
-<div *ngIf="teamDetails" class="team-page-item d-flex justify-content-center flex-column">
-  <div class="text-center team-list-name">  {{teamDetails.name}} </div>
+<h1 class="text-center team-list-name">  {{teamDetails.name}} team </h1>
+<div *ngIf="teamDetails" class="team-page-item d-flex justify-content-center">
   <img
     src="{{teamDetails.logo}}"
-    class="team-page-logo ">
+    class="team-page-logo">
 </div>
-<div *ngIf="teamBets" class="team-page-item d-flex justify-content-center flex-column">
+<div *ngIf="teamBets" class="team-page-item d-flex justify-content-center flex-column container">
   <h2 class="text-center">Bets of the team {{teamDetails.name}}</h2>
   <div *ngFor="let betItem of teamBets">
     <app-bet-item [item]="betItem"></app-bet-item>
