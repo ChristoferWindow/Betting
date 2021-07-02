@@ -24,6 +24,7 @@ import {betsReducer} from './store/bets/bets.selector';
 import {teamsReducer} from './store/teams/teams.selector';
 import { HomeLandingImageComponent } from './home-landing-image/home-landing-image.component';
 import { TeamItemComponent } from './team-item/team-item.component';
+import {appReducer} from './store/app.store';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,7 @@ import { TeamItemComponent } from './team-item/team-item.component';
         FormsModule,
         ReactiveFormsModule,
         NgbModule,
-        StoreModule.forRoot(teamsReducer),
+        StoreModule.forRoot(appReducer),
     ],
     providers: [],
     bootstrap: [AppComponent]

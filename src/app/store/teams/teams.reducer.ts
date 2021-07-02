@@ -9,22 +9,22 @@ export interface TeamsState {
 export const initialState: TeamsState = {
     teams: [
         {
-            _id: nanoid(),
+            _id: '1111',
             name: 'SadBasement',
             logo: 'https://static01.nyt.com/images/2016/09/28/us/17xp-pepethefrog_web1/28xp-pepefrog-articleLarge.jpg?quality=75&auto=webp&disable=upscale'
         },
         {
-            _id: nanoid(),
+            _id: '1112',
             name: 'Cute dogo',
             logo: 'https://previews.123rf.com/images/ratoca/ratoca1902/ratoca190200003/125283307-funny-small-dog-draw.jpg'
         },
         {
-            _id: nanoid(),
+            _id: '1113',
             name: 'CCPR_RULEZ',
-            logo: 'https://lh3.googleusercontent.com/proxy/9znku309b-hURcp5XkSE1taS4uH5FJKUMfyDO39g8XY-ooIIl-CEqeOgKo33xXq3AbpvMJktIMySbPuejLhx8sdQ_G8FXZbfA1Ln_1dZWzQxMsRzgsmghMlI21QVps_EoQdLbA6n2hPlZ4TkEmRfww'
+            logo: 'https://static3.bigstockphoto.com/3/4/3/large2/343484155.jpg'
         },
         {
-            _id: nanoid(),
+            _id: '1114',
             name: 'CockKraków',
             logo: 'https://image.spreadshirtmedia.net/image-server/v1/mp/compositions/T1188A70MPA2649PT10X13Y45D156429263FS1296/views/1,width=550,height=550,appearanceId=70,backgroundColor=FFFFFF,noPt=true/micro-cock-small-cock-cock-cock-funny-humor-etui-na-iphonea-78.jpg'
         },

@@ -11,12 +11,38 @@ export const initialState: BetsState = {bets: [
             _id: nanoid(),
             teams: {
                 team1: {
-                    teamId: nanoid(),
+                    teamId: '1111',
                     rate: 2
                 },
                 team2: {
-                    teamId: nanoid(),
+                    teamId: '1112',
                     rate: 1
+                }
+            }
+        },
+        {
+            _id: nanoid(),
+            teams: {
+                team1: {
+                    teamId: '1112',
+                    rate: 5
+                },
+                team2: {
+                    teamId: '1114',
+                    rate: 3
+                }
+            }
+        },
+        {
+            _id: nanoid(),
+            teams: {
+                team1: {
+                    teamId: '1111',
+                    rate: 2
+                },
+                team2: {
+                    teamId: '1113',
+                    rate: 5
                 }
             }
         }
